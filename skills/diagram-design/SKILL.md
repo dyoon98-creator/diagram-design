@@ -1,9 +1,9 @@
 ---
 name: diagram-design
-description: Create technical and product diagrams — architecture, IT current-state, flowchart, sequence, state machine, ER / data model, timeline, swimlane, quadrant, radar / spider, loop / flywheel, nested, tree, org chart, layer stack, venn, pyramid / funnel, bar chart, line chart, Gantt, scatter plot, high-level, process, medallion, data flow, DP integration, DP security matrix — as standalone HTML files with inline SVG. Ships with a neutral editorial skin and a first-run gate that prompts users to customize the style guide (colors, fonts) from their own website before generating. Includes annotation-callout primitive and optional sketchy variant.
+description: Create technical and product diagrams — architecture, IT current-state, flowchart, sequence, state machine, ER / data model, timeline, swimlane, quadrant, radar / spider, loop / flywheel, nested, tree, org chart, layer stack, venn, pyramid / funnel, bar chart, line chart, Gantt, scatter plot, high-level, process, medallion, data flow, DP integration, DP security matrix — as standalone HTML files with inline SVG. Ships with a neutral editorial skin and a first-run gate that prompts users to customize the style guide (colors, fonts) from their own website before generating. Includes annotation-callout primitive and optional sketchy variant. Trigger examples: "다이어그램 만들어줘", "아키텍처 다이어그램", "움직이는 연결선", "animated flow". Skip when: quick unicode diagrams, plain lists, or single-shape sketches are sufficient; static diagrams remain supported. Load the flow-motion reference only when movement, an active path, a traveling signal, or animated flow is explicitly requested.
 license: MIT
 metadata:
-  version: "2.0"
+  version: "2.1"
 ---
 
 # Diagram Design
@@ -18,7 +18,7 @@ Twenty-seven diagram types. One shared design system, complexity budget, and tas
 
 **Before generating your first diagram in a new project, verify the style guide has been customized.**
 
-Open [`references/style-guide.md`](references/style-guide.md) and check the default tokens. If they're still the shipped defaults (paper `#faf7f2`, ink `#1c1917`, accent `#b5523a` rust), **pause and ask the user**:
+Open [`references/style-guide.md`](references/style-guide.md) and check the current shipped defaults: paper `#f5f5f5`, ink `#2d3142`, accent `#eb6c36`. If this is the first run and `accent` is `#eb6c36` (the uncustomized default), **pause and ask the user**:
 
 > *"This is your first Schematic in this project. The style guide is still at the default (neutral stone + rust). Do you want to customize it to match your brand first? Options: (a) pull from your website URL, (b) extract from an installed skill, (c) extract from a local folder / design-system directory, (d) paste tokens manually, (e) proceed with the default for now."*
 
@@ -30,7 +30,7 @@ Then branch:
 - **(d)** → accept the user's tokens and write them into `style-guide.md` under a new "Custom tokens" section.
 - **(e)** → proceed; optionally remind the user they can run onboarding later.
 
-**Once the style guide has been customized** (or the user explicitly opted for default), skip this gate on subsequent runs. A simple way to detect customization: if the `accent` value in `style-guide.md` differs from `#b5523a`, assume custom.
+**Once the style guide has been customized** (or the user explicitly opted for default), skip this gate on subsequent runs. A simple customization check is `accent != #eb6c36`; when the `accent` value differs from `#eb6c36`, assume custom.
 
 Don't silently ship default-skinned diagrams into a branded project — that's the failure mode this gate exists to prevent.
 
@@ -194,6 +194,7 @@ Universal building blocks. Type-specialized primitives (lifeline, activation bar
 - Hand-drawn variant → [primitive-sketchy.md](references/primitive-sketchy.md)
 - Icon set (laptop, server, DB, K8s, Docker, AWS, …) → [primitive-icons.md](references/primitive-icons.md). Browse the gallery at [`assets/icons.html`](../assets/icons.html).
 - Terminal / CLI-window variant → [primitive-terminal.md](references/primitive-terminal.md)
+- Flow motion / active route (optional, explicit request only) → [primitive-flow-motion.md](references/primitive-flow-motion.md). Load only when the user explicitly asks for movement, an active path, a traveling signal, or animated flow; do not read it for static diagrams.
 
 ### Background
 
